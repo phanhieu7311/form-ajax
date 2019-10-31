@@ -1,3 +1,4 @@
+var fs=require('fs');
 const express=require('express');
 const bodyParser=require('body-parser');
 
@@ -22,6 +23,7 @@ app.post('/homepost',(req,res)=>{
     var email = req.body.email.trim();
     var password = req.body.password.trim();
     var re_password = req.body.re_password.trim();
+    var address=req.body.address.trim();
     var phone = req.body.phone.trim();
 
     var errors = {};
@@ -38,8 +40,23 @@ app.post('/homepost',(req,res)=>{
     if(print_error != "") 
         console.log(errors);
     else{
-        setTimeout(function() {
-            res.send(true);
-        }, 3000);
+        let user={
+            username,
+            email,
+            password,
+            address,
+            phone
+        }
+        fs.appendFile('register.txt',JSON.stringify(user)+',\n','utf8',function(err){
+            if(err)
+                throw err;
+            else{
+                setTimeout(function() {
+                    res.send(true);
+                }, 3000);
+            }
+        });
+
+        
     }
 })
