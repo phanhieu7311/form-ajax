@@ -1,0 +1,70 @@
+*{
+    font-family: roboto;
+}
+.form-group{
+    color: #01904a;
+}
+.text{
+    padding-top: 100px;
+    float: left;
+    padding-left: 650px;
+}
+#tieude{
+    color: #01904a; 
+}
+#register{
+    background-color: #01904a;
+    color: white;
+    border: none;
+}
+.error {
+    color: #01904a;
+}
+
+#Error {
+    padding:10px;
+    width: 600px;
+    color: white;
+    background-color: #01904a;
+    border-radius: 10px;
+}
+
+#Result {
+    padding:10px;
+    width: 50%;
+    color: white;
+    background-color: #01904a;
+    border-radius: 10px;
+}
+
+#loading {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background-color: #01904a;
+    animation-name: loading;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    border-radius: 50%;
+}
+
+#loading::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50px;
+}
+
+#loading::after {
+    content: "";
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+}
