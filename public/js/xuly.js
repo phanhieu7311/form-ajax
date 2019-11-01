@@ -76,7 +76,7 @@ $(document).ready(function(){
             $("#Result").css("display", "none");
             $("#Error").html(print_error);
         } else {
-            $("#button").css("display", "none");
+            $("#register").css("display", "none");
             $("#loading").css("display", "block");
         }
 

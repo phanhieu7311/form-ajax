@@ -12,7 +12,7 @@
 #tieude{
     color: #01904a; 
 }
-#register{
+#register,#login{
     background-color: #01904a;
     color: white;
     border: none;

@@ -49,5 +49,15 @@ module.exports={
         } else {
             return "Wrong Format Of Phone Number";
         }
+    },
+    checkPasswordLogin:(str1)=> {
+        var result = "";
+        if (str1.length <= 8) {
+            result += "Password Must More Than 8 Character. ";
+        } else if(checkCapital(str1) == false)
+            result += "Password Must Have Less One Capital Character. "
+        else
+            return true
+        return result;
     }
 }

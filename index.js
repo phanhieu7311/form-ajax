@@ -47,7 +47,12 @@ app.post('/homepost',(req,res)=>{
             address,
             phone
         }
-        fs.appendFile('register.txt',JSON.stringify(user)+',\n','utf8',function(err){
+        // var userList;
+        // fs.readFileSync('user.txt', 'utf8', function (err, data) {
+        //     userList=JSON.parse(data);
+        //     userList.push(user);
+        // });
+        fs.writeFile('user.txt',user,'utf8',function(err){
             if(err)
                 throw err;
             else{
@@ -56,7 +61,49 @@ app.post('/homepost',(req,res)=>{
                 }, 3000);
             }
         });
+    }
+})
 
-        
+app.get('/login',(req,res)=>{
+    res.render('login');
+})
+
+app.get('/user',(req,res)=>{
+    fs.readFile('user.txt','utf8',(err,data)=>{
+        res.send(data);
+    })
+})
+app.post('/loginpost',(req,res)=>{
+    var username = req.body.username.trim();
+    var password = req.body.password.trim();
+
+    var errors = {};
+    errors.username = checkFunc.checkLength("User Name",username, 3);
+    errors.password = checkFunc.checkPasswordLogin(password);
+    var print_error = "";
+    for(element in errors) {
+        if(errors[element] !== true) {
+            print_error += "<h6>" + errors[element] + "</h6><br>";
+        }
+    }
+    if(print_error != "") 
+        console.log(errors);
+    else{
+        var userList
+        fs.readFile('register.txt', 'utf8', function (err, data) {
+            userList=JSON.parse(data);
+            userList.forEach(user => {
+                if(user.username==username&&user.password==password){
+                    setTimeout(function() {
+                        res.send(true);
+                    }, 3000);
+                }
+                else{
+                    setTimeout(function() {
+                        res.send("Login failed");
+                    }, 3000);
+                }
+            });
+        });
     }
 })
